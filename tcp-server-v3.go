@@ -31,17 +31,7 @@ func main() {
 
     _, err := conn.Read(buffer)
     message := string(buffer)
-/*    newmessage := message[0]
 
-    for i:=0; i<len(message); i++ {
-      if message[i]=='\n' {
-        return
-      } else {
-        newmessage = append(newmessage, message[i]...)  
-      }    
-    }
-*/
-//    if strings.TrimSpace(string(message))== "STOP" {
     if strings.Count(message,"STOP")>0 {
       fmt.Println("Exiting TCP Server - bye")
       ln.Close()
@@ -55,12 +45,8 @@ func main() {
 
     // output message received
     countPackets++
-    if countPackets%1000==0{
+    if countPackets%100==0{
       fmt.Printf("Packets (%v): %s \n", countPackets , message)
     }
-    // send new string back to client
- //   conn.Write([]byte(message + "\n"))
-
   }
-
 }
